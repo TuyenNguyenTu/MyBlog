@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model PagedList.IPagedList<Model.EntityF.tbl_UserName>
+@using PagedList.Mvc;
+
+<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+    <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+            <h1 class="mdl-card__title-text">Danh sách tài khoản</h1>
+        </div>
+        <div class="mdl-card__supporting-text no-padding">
+            <table class="mdl-data-table mdl-js-data-table">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">#</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center">UserName</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center"> Avatar</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center">CreatedDate</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center"> CreatedBy</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center"> ModifiedDate</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center">ModifiedBy</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center">Status</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center"> IsAdmin</th>
+                        <th class="mdl-data-table__cell--non-numeric" style="text-align:center">Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">@item.ID</td>
+                            <td class="mdl-data-table__cell--non-numeric">@item.UserName</td>
+                            <td class="mdl-data-table__cell--non-numeric">@item.Avatar</td>
+                            <td class="mdl-data-table__cell--non-numeric">@item.CreatedDate</td>
+                            <td class="mdl-data-table__cell--non-numeric">@item.CreatedBy</td>
+                            <td class="mdl-data-table__cell--non-numeric">@item.ModifiedDate</td>
+                            <td class="mdl-data-table__cell--non-numeric">@item.ModifiedBy</td>
+                            <td class="mdl-data-table__cell--non-numeric">@(item.Status == true ? "Active" : "Locked")</td>
+                            <td class="mdl-data-table__cell--non-numeric">@(item.IsAdmin == true ? "Admin" : "Staff")</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+                    @*<tr>
+                            <td class="mdl-data-table__cell--non-numeric">5</td>
+                            <td class="mdl-data-table__cell--non-numeric">Life of Pi</td>
+                            <td class="mdl-data-table__cell--non-numeric">Yann Martel</td>
+                            <td class="mdl-data-table__cell--non-numeric"><span class="label label--mini color--green">Fiction</span> </td>
+                            <td class="mdl-data-table__cell--non-numeric">2016</td>
+                            <td class="mdl-data-table__cell--non-numeric">2001</td>
+                            <td class="mdl-data-table__cell--non-numeric">English</td>
+                            <td class="mdl-data-table__cell--non-numeric">English</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <span class="label label--mini label__availability background-color--primary"></span>
+                                <span class="label label--mini label__availability background-color--primary"></span>
+                                <span class="label label--mini label__availability background-color--primary"></span>
+                                <span class="label label--mini label__availability background-color--primary"></span>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal">Add to cart</button></td>
+                        </tr>*@
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+

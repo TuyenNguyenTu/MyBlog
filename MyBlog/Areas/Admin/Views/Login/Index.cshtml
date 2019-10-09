@@ -1,0 +1,124 @@
+﻿@model MyBlog.Areas.Admin.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/DB_16х16.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng Nhập</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link href="~/Asset/admin/css/fontcssfamily.css" rel="stylesheet" />
+    <link href="~/Asset/admin/css/lib/fontgoogleapiicon.css" rel="stylesheet" />
+    @*<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">*@
+    <!-- inject:css -->
+    <link href="~/Asset/admin/css/lib/getmdl-select.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Asset/admin/css/css/lib/nv.d3.min.css">
+    <link href="~/Asset/admin/css/application.min.css" rel="stylesheet" />
+    <link href="~/Asset/admin/css/tuyencolblack.css" rel="stylesheet" />
+    <!-- endinject -->
+
+</head>
+<body>
+
+    <div class="mdl-layout mdl-js-layout color--gray is-small-screen login">
+        <main class="mdl-layout__content">
+            <div class="mdl-card mdl-card__login mdl-shadow--2dp">
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                    <fieldset>
+                        <div class="mdl-card__supporting-text color--dark-gray">
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+                                    <span class="mdl-card__title-text text-color--smooth-gray">Đăng nhập tài khoản</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+                                    <span class="login-name text-color--white">Sign in</span>
+                                    <span class="login-secondary-text text-color--smoke">Nhập tài khoản và mật khẩu để vào hệ thống</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                        @Html.TextBoxFor(model => model.UserName, new { @class = "mdl-textfield__input", @autofocus = "autofocus" })
+                                        @*<input class="mdl-textfield__input" type="text" id="e-mail">*@
+                                        <label class="mdl-textfield__label" for="e-mail">Email</label>
+                                    </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                        @Html.TextBoxFor(model => model.PassWord, new { @class = "mdl-textfield__input" })
+                                        <label class="mdl-textfield__label" for="password">Password</label>
+                                    </div>
+                                    @*<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+                                                @Html.TextBoxFor(model => model.PassWord, new { @clas = "mdl-textfield__input" })
+                                                <label class="mdl-textfield__label" for="e-mail">PassWord</label>
+                                                <input class="mdl-textfield__input" type="text" id="password">
+
+                                        </div>*@
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(model => model.Remember) Remember Me
+                                    </div>
+                                    <a href="forgot-password.html" class="login-link">Forgot password?</a>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
+                                    <a href="sign-up.html" class="login-link">Don't have account?</a>
+                                    <div class="mdl-layout-spacer"></div>
+
+                                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised color--light-blue">
+                                        SIGN IN
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                }
+
+            </div>
+        </main>
+    </div>
+
+    <!-- inject:js -->
+    <script src="~/Asset/admin/js/d3.min.js"></script>
+    <script src="~/Asset/admin/js/getmdl-select.min.js"></script>
+    <script src="~/Asset/admin/js/material.min.js"></script>
+    <script src="~/Asset/admin/js/nv.d3.min.js"></script>
+    <script src="~/Asset/admin/js/layout/layout.min.js"></script>
+    <script src="~/Asset/admin/js/scroll/scroll.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/charts/discreteBarChart.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/charts/linePlusBarChart.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/charts/stackedBarChart.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/employer-form/employer-form.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/line-chart/line-charts-nvd3.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/map/maps.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/pie-chart/pie-charts-nvd3.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/table/table.min.js"></script>
+    <script src="~/Asset/admin/js/widgets/todo/todo.min.js"></script>
+    <!-- endinject -->
+
+</body>
+</html>
